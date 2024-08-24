@@ -11,18 +11,18 @@ final class Json
 {
     const Depth_Limit = 5;
 
-    public static function printFromFile(string $path, bool $newLines = true)
+    public static function printFromFile(string $path, bool $newLines = true): void
     {
         self::print(json: file_get_contents($path), newLines: $newLines);
     }
 
-    public static function print(string|array|object $json, bool $newLines = true)
+    public static function print(string|array|object $json, bool $newLines = true): void
     {
         switch (gettype($json)) {
             case 'string':
                 $json = json_decode($json);
                 if (!$json) {
-                    return '';
+                    echo '';
                 }
                 break;
             case 'object':

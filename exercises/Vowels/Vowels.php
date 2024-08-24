@@ -12,7 +12,7 @@ namespace Exercises\Vowels;
 final class Vowels
 {
     const VOWELS = 'aeiou';
-    public static function count(string $string):int
+    public static function count(string $string): int
     {
         $count = 0;
         foreach (str_split(strtolower($string)) as $char) {
