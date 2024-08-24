@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 namespace Exercises\Denominator;
+
+use Exception;
+
 /**
-* Given an amount and an array of denominations, return an array
-* of denominations and numbers.
+* Given an amount and an array of denominations, return an array of denominations and numbers.
 *
 * @method static array getDenominations(int $amount, ?array &$denominations)
 * For example,
@@ -14,4 +16,46 @@ namespace Exercises\Denominator;
 */
 final class Denominator
 {
+    public static function getDenominations(int $amount, ?array $denominations): array
+    {
+        if (!$denominations) {
+            throw new Exception('Invalid Denominations array');
+        }
+
+        if ($amount < 0) {
+            throw new Exception('Invalid Amount');
+            return null;
+        }
+
+        $resultDenominations = [];
+
+        krsort($denominations);
+
+        foreach ($denominations as $denomination => $count)
+        {
+            if ($denomination <= 0 || $count < 0) {
+                continue;
+            }
+
+            $maxDenominationForAmount = floor($amount / $denomination);
+
+            if ($maxDenominationForAmount == 0) {
+                continue;
+            }
+
+            if ($maxDenominationForAmount < $count) {
+                $amount -= $maxDenominationForAmount * $denomination;
+                $resultDenominations[$denomination] = $maxDenominationForAmount;
+            } else {
+                $amount -= $count * $denomination;
+                $resultDenominations[$denomination] = $count;
+            }
+        }
+
+        if ($amount > 0) {
+            throw new Exception('There is insufficient Denominators for the amount given');
+        }
+
+        return $resultDenominations;
+    }
 }
