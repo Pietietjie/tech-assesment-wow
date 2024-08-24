@@ -13,7 +13,7 @@ class JsonTest extends TestCase
     public function test_that_print_from_json_file_is_outputted_as_expected(): void
     {
         $this->expectOutputString("[\r\n\t{ \"name\": \"Eryn Bryan\", \"age\": \"23\", \"company\": \"Fishnix\" },\r\n\t{ \"name\": \"Hasnain O'Ryan\", \"age\": \"32\", \"company\": \"Floataris\" },\r\n\t{ \"name\": \"Briony Mathews\", \"age\": \"40\", \"company\": \"Swishterix\" }\r\n]");
-        Json::printFromFile(path: './storage/test_1.json');
+        Json::printFromFile(path: __DIR__.'/../../storage/test_1.json');
     }
 
     /**
