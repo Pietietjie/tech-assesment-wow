@@ -31,6 +31,11 @@ final class Stack
     private ?Node $top = null;
     public int $length = 0;
 
+    /**
+     * Adds an item to the top of the stack
+     * @param mixed $value
+     * @return void
+     */
     public function add(mixed $value): void
     {
         if ($this->top == null) {
@@ -43,6 +48,10 @@ final class Stack
         $this->length++;
     }
 
+    /**
+     * Returns the last added item to the stack
+     * @return mixed
+     */
     public function peek(): mixed
     {
         if ($this->top == null) {
@@ -51,6 +60,10 @@ final class Stack
         return $this->top->getItem();
     }
 
+    /**
+     * Removes and returns the last added item to the stack
+     * @return mixed
+     */
     public function pop(): mixed
     {
         if ($this->top == null) {
@@ -62,6 +75,10 @@ final class Stack
         return $previousValue;
     }
 
+    /**
+     * Copies the current Stack to an array
+     * @return array
+     */
     public function toArray(): array
     {
         $clonedStack = clone $this;
@@ -73,6 +90,11 @@ final class Stack
         return $result;
     }
 
+    /**
+     * Interweaves all of the given stacks
+     * @param Stack ...$stacks
+     * @return Stack
+     */
     public static function zip(Stack ...$stacks): Stack
     {
         $zippedStack = new Stack;

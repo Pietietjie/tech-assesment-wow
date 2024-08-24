@@ -16,6 +16,13 @@ use Exception;
 */
 final class Denominator
 {
+    /**
+     * Returns the denominators of the given amount based on the given denominators
+     * @param int $amount
+     * @param ?array $denominations
+     * @throws Exception
+     * @return array
+     */
     public static function getDenominations(int $amount, ?array $denominations): array
     {
         if (!$denominations) {

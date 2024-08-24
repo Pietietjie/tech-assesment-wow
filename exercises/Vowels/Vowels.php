@@ -12,6 +12,11 @@ namespace Exercises\Vowels;
 final class Vowels
 {
     const VOWELS = 'aeiou';
+    /**
+     * Counts the vowels in the given string
+     * @param string $string The string from which to count the vowels
+     * @return int The count of the vowels
+     */
     public static function count(string $string): int
     {
         $count = 0;

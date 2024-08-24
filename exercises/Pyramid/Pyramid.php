@@ -11,6 +11,11 @@ namespace Exercises\Pyramid;
 */
 final class Pyramid
 {
+    /**
+     * Prints a pyramid/ziggurat with the amount of levels specified
+     * @param int $rows the amount of levels to print for the pyramid
+     * @return void
+     */
     public static function print(int $rows, string $pyramidBlock = "#"): void
     {
         for ($i=0; $i < $rows; $i++) {

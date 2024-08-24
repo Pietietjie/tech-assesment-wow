@@ -35,6 +35,11 @@ final class Queue
     private ?Node $last = null;
     public int $length = 0;
 
+    /**
+     * Adds an item to the back of the queue
+     * @param mixed $value
+     * @return void
+     */
     public function add(mixed $value): void
     {
         if ($this->first == null) {
@@ -46,6 +51,10 @@ final class Queue
         $this->length++;
     }
 
+    /**
+     * Returns the last first item in the Queue
+     * @return mixed
+     */
     public function peek(): mixed
     {
         if ($this->first == null) {
@@ -54,6 +63,10 @@ final class Queue
         return $this->first->getItem();
     }
 
+    /**
+     * Removes and returns the last first item in the Queue
+     * @return mixed
+     */
     public function remove(): mixed
     {
         if ($this->first == null) {
@@ -65,6 +78,10 @@ final class Queue
         return $previousValue;
     }
 
+    /**
+     * Copies the current Queue to an array
+     * @return array
+     */
     public function toArray(): array
     {
         $clonedQueue = clone $this;
@@ -76,6 +93,11 @@ final class Queue
         return $result;
     }
 
+    /**
+     * Interweaves all of the given queues
+     * @param Queue ...$queues
+     * @return Queue
+     */
     public static function zip(Queue ...$queues): Queue
     {
         $zippedQueue = new Queue;
