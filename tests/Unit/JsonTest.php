@@ -15,6 +15,30 @@ class JsonTest extends TestCase
         );
     }
 
+    public function test_that_json_string_with_int_outputs_as_expected(): void
+    {
+        $this->assertEquals(
+            expected: "{ \"count\": 12 }",
+            actual: Json::print(json: (object) ["count" => 12], newLines: false)
+        );
+    }
+
+    public function test_that_json_string_with_double_outputs_as_expected(): void
+    {
+        $this->assertEquals(
+            expected: "{ \"money\": 1.2 }",
+            actual: Json::print(json: (object) ["money" => 1.2], newLines: false)
+        );
+    }
+
+    public function test_that_json_string_with_null_outputs_as_expected(): void
+    {
+        $this->assertEquals(
+            expected: "{ \"love\": null }",
+            actual: Json::print(json: (object) ["love" => null], newLines: false)
+        );
+    }
+
     public function test_that_json_string_with_bool_outputs_as_expected(): void
     {
         $this->assertEquals(
