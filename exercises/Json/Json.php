@@ -11,12 +11,12 @@ final class Json
 {
     const Depth_Limit = 5;
 
-    public static function printFromFile(string $path, bool $newLines = true):string
+    public static function printFromFile(string $path, bool $newLines = true)
     {
-        return self::print(json: file_get_contents($path), newLines: $newLines);
+        self::print(json: file_get_contents($path), newLines: $newLines);
     }
 
-    public static function print(string|array|object $json, bool $newLines = true):string
+    public static function print(string|array|object $json, bool $newLines = true)
     {
         switch (gettype($json)) {
             case 'string':
@@ -29,7 +29,7 @@ final class Json
                 $json = (array) $json;
                 break;
         }
-        return self::formatJson(json: $json, newLines: $newLines, delimiter: $newLines ? ",\r\n\t" : ", ");
+        echo self::formatJson(json: $json, newLines: $newLines, delimiter: $newLines ? ",\r\n\t" : ", ");
     }
 
     protected static function formatJson(array $json, string $delimiter , bool $newLines = false, int $depth = 0): string
