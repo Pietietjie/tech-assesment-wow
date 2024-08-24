@@ -25,10 +25,12 @@ namespace Exercises\Queue;
  * $queue2->add('c');
  *
  * Queue::zip(queue1, queue2) -> [1, 'a', 2, 'b', 'c']
+ *
+ * !important Note: that the above example's behavior is not that of a queue but a stack as a Queue is first in first out and a stack is last in first out
+ * I will implement both to cover all bases
  */
 final class Queue
 {
-    private mixed $value = null;
     private ?Node $first = null;
     private ?Node $last = null;
     public int $length = 0;
@@ -36,7 +38,6 @@ final class Queue
     public function add(mixed $value): void
     {
         if ($this->first == null) {
-            $this->value = $value;
             $this->first = $this->last = new Node($value);
         } else {
             $this->last->setNext(new Node($value));
@@ -47,7 +48,10 @@ final class Queue
 
     public function peek(): mixed
     {
-        return $this->value;
+        if ($this->first == null) {
+            return null;
+        }
+        return $this->first->getItem();
     }
 
     public function remove(): mixed
@@ -55,18 +59,32 @@ final class Queue
         if ($this->first == null) {
             return null;
         }
-        $previousValue = $this->value;
+        $previousValue = $this->first->getItem(); 
         $this->first = $this->first->getNext();
-        if ($this->first != null) {
-            $this->value = $this->first->getItem();
-        }
         $this->length--;
         return $previousValue;
+    }
+
+    public function toArray(): array
+    {
+        $clonedQueue = clone $this;
+        $result = [];
+
+        while ($clonedQueue->length > 0) {
+            $result[] = $clonedQueue->remove();
+        }
+        return $result;
     }
 
     public static function zip(Queue ...$queues): Queue
     {
         $zippedQueue = new Queue;
+        $tempQueues = [];
+        foreach ($queues as $i => $queue) {
+            $tempQueues[$i] = clone $queue;
+        }
+        $queues = $tempQueues;
+
         while (count($queues) > 0) {
             foreach ($queues as $i => $queue) {
                 if ($queue->length == 0) {

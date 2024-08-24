@@ -22,6 +22,8 @@ class QueueTest extends TestCase
         $this->assertEquals(expected: 1, actual: $queue->length);
         $this->assertEquals(expected: ':)', actual: $queue->peek());
         $this->assertEquals(expected: ':)', actual: $queue->remove());
+        $this->assertEquals(expected: null, actual: $queue->peek());
+        $this->assertEquals(expected: null, actual: $queue->remove());
 
         $this->assertEquals(expected: 0, actual: $queue->length);
     }
@@ -60,8 +62,8 @@ class QueueTest extends TestCase
 
         $queueTheZipped = Queue::zip($queue, $queueTheSecond);
 
-        $this->assertEquals(expected: 0, actual: $queue->length);
-        $this->assertEquals(expected: 0, actual: $queueTheSecond->length);
+        $this->assertEquals(expected: 3, actual: $queue->length);
+        $this->assertEquals(expected: 2, actual: $queueTheSecond->length);
 
         $this->assertEquals(expected: 5, actual: $queueTheZipped->length);
         $this->assertEquals(expected: ':)', actual: $queueTheZipped->peek());
@@ -99,9 +101,9 @@ class QueueTest extends TestCase
 
         $queueTheZipped = Queue::zip($queue, $queueTheSecond, $queueTheThird);
 
-        $this->assertEquals(expected: 0, actual: $queue->length);
-        $this->assertEquals(expected: 0, actual: $queueTheSecond->length);
-        $this->assertEquals(expected: 0, actual: $queueTheThird->length);
+        $this->assertEquals(expected: 1, actual: $queue->length);
+        $this->assertEquals(expected: 1, actual: $queueTheSecond->length);
+        $this->assertEquals(expected: 1, actual: $queueTheThird->length);
 
         $this->assertEquals(expected: 3, actual: $queueTheZipped->length);
         $this->assertEquals(expected: ':)', actual: $queueTheZipped->peek());
